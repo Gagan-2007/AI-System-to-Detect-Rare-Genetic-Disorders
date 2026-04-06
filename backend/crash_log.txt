@@ -1,0 +1,25 @@
+﻿node : file:///E:/Aivora/backend/src/routes/form.
+routes.js:4
+At line:1 char:1
++ node src/index.js 2>&1 | Out-File -FilePath 
+crash_log.txt -Encoding u ...
++ ~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (fil 
+   e:///E:/Aivo...orm.routes.js:4:String) [], R  
+  emoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+const router = Router();
+               ^
+
+ReferenceError: Router is not defined
+    at file:///E:/Aivora/backend/src/routes/form.
+routes.js:4:16
+    at ModuleJob.run 
+(node:internal/modules/esm/module_job:345:25)
+    at async onImport.tracePromise.__proto__ 
+(node:internal/modules/esm/loader:651:26)
+    at async asyncRunEntryPointWithESMLoader 
+(node:internal/modules/run_main:117:5)
+
+Node.js v22.19.0
