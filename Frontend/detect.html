@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Genetic Mutation Form</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+     background:
+  radial-gradient(circle at top left, rgba(219, 234, 254, 0.42), transparent 28%),
+  radial-gradient(circle at bottom right, rgba(255, 243, 214, 0.45), transparent 24%),
+  linear-gradient(180deg, #eff4f9 0%, #f8fafc 45%, #eef3f8 100%);
+      padding: 40px 20px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .container {
+  margin-top: 140px; /* 👈 adds clear gap from navbar */
+
+  width: 100%;
+  max-width: 700px;
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+    h1 {
+      text-align: center;
+      margin-bottom: 25px;
+      color: #222;
+      font-size: 28px;
+    }
+
+    .section-title {
+      margin: 22px 0 12px;
+      font-size: 18px;
+      font-weight: bold;
+      color: #333;
+      border-bottom: 1px solid #e5e5e5;
+      padding-bottom: 8px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .field.full {
+      grid-column: 1 / -1;
+    }
+
+    label {
+      margin-bottom: 6px;
+      font-size: 14px;
+      color: #444;
+      font-weight: 600;
+    }
+
+    input,
+    select {
+      padding: 12px;
+      border: 1px solid #d7dbe3;
+      border-radius: 10px;
+      font-size: 14px;
+      outline: none;
+      transition: 0.2s;
+    }
+
+    input:focus,
+    select:focus {
+      border-color: #4f46e5;
+      box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.12);
+    }
+
+    .checkbox-group {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+      padding-top: 8px;
+      flex-wrap: wrap;
+    }
+
+    .checkbox-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    button {
+      width: 100%;
+      margin-top: 24px;
+      padding: 14px;
+      border: none;
+      border-radius: 12px;
+      background: #111827;
+      color: white;
+      font-size: 15px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    button:hover {
+      background: #1f2937;
+    }
+
+    .result {
+      margin-top: 20px;
+      padding: 14px;
+      border-radius: 10px;
+      font-size: 14px;
+      line-height: 1.5;
+      display: none;
+      white-space: pre-wrap;
+    }
+
+    .success {
+      background: #ecfdf5;
+      color: #065f46;
+      border: 1px solid #a7f3d0;
+    }
+
+    .error {
+      background: #fef2f2;
+      color: #991b1b;
+      border: 1px solid #fecaca;
+    }
+   .nav-wrap {
+  position: fixed;
+  top: 22px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  width: 100%;
+  padding: 0 20px;
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.nav-shell {
+  width: min(1020px, 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  pointer-events: auto;
+}
+
+.brand-mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 46px;
+  padding: 0 18px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.76);
+  border: 1px solid rgba(17, 24, 39, 0.08);
+  color: #111827;
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: 0.4px;
+  white-space: nowrap;
+  text-decoration: none;
+  backdrop-filter: blur(14px) saturate(140%);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  box-shadow:
+    0 10px 24px rgba(15, 23, 42, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.95);
+}
+
+.dynamic-island {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 0 24px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(18px) saturate(140%);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+  box-shadow:
+    0 14px 34px rgba(15, 23, 42, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.96);
+}
+
+.nav-right {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.nav-right a {
+  position: relative;
+  text-decoration: none;
+  color: #4b5563;
+  font-size: 14px;
+  font-weight: 600;
+  white-space: nowrap;
+  padding: 4px 0;
+  transition: color 0.3s ease;
+}
+
+.nav-right a:hover,
+.nav-right a.active {
+  color: #111827;
+}
+
+.nav-dot {
+  position: absolute;
+  bottom: -7px;
+  left: 0;
+  width: 6px;
+  height: 6px;
+  background: #111827;
+  border-radius: 50%;
+  transition: left 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+  pointer-events: none;
+}
+
+.detect-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 46px;
+  padding: 0 20px;
+  border-radius: 999px;
+  text-decoration: none;
+  white-space: nowrap;
+  font-size: 14px;
+  font-weight: 700;
+  color: #111827;
+  background: rgba(255, 255, 255, 0.75);
+  border: 1px solid rgba(17, 24, 39, 0.08);
+  backdrop-filter: blur(16px) saturate(140%);
+  -webkit-backdrop-filter: blur(16px) saturate(140%);
+  box-shadow:
+    0 10px 26px rgba(15, 23, 42, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.95);
+  transition: all 0.28s ease;
+}
+
+.detect-btn:hover {
+  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow:
+    0 14px 32px rgba(15, 23, 42, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 1);
+}
+
+.detect-btn:active {
+  transform: translateY(0);
+  box-shadow:
+    0 6px 14px rgba(15, 23, 42, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+@media (max-width: 1100px) {
+  .nav-shell {
+    width: min(930px, 100%);
+    gap: 10px;
+  }
+
+  .dynamic-island {
+    padding: 0 18px;
+  }
+
+  .nav-right {
+    gap: 18px;
+  }
+
+  .brand-mark,
+  .detect-btn {
+    padding: 0 14px;
+  }
+}
+
+@media (max-width: 900px) {
+  .nav-wrap {
+    top: 16px;
+    padding: 0 12px;
+  }
+
+  .nav-shell {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .brand-mark {
+    order: 1;
+  }
+
+  .dynamic-island {
+    order: 2;
+    width: auto;
+    max-width: 100%;
+    min-height: 46px;
+    padding: 10px 16px;
+  }
+
+  .detect-btn {
+    order: 3;
+  }
+
+  .nav-right {
+    justify-content: center;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+
+  .nav-right a {
+    font-size: 13px;
+  }
+}
+button {
+  width: 100%;
+  margin-top: 24px;
+  padding: 14px;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(18px) saturate(140%);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #ffffff;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow:
+    0 6px 20px rgba(0, 0, 0, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+button:hover {
+  background: rgba(0, 0, 0, 0.6);
+  transform: translateY(-2px);
+}
+
+button:active {
+  transform: translateY(0);
+}
+@media (max-width: 640px) {
+  .brand-mark,
+  .detect-btn {
+    height: 40px;
+    font-size: 12px;
+    padding: 0 12px;
+  }
+
+  .dynamic-island {
+    min-height: 42px;
+    padding: 10px 14px;
+  }
+
+  .nav-right {
+    gap: 12px;
+  }
+
+  .nav-right a {
+    font-size: 12px;
+  }
+
+  .nav-dot {
+    bottom: -6px;
+    width: 5px;
+    height: 5px;
+  }
+}
+
+    @media (max-width: 640px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="nav-wrap">
+  <div class="nav-shell">
+    <a href="index.html" class="brand-mark">creAIte</a>
+
+    <nav class="dynamic-island">
+      <div class="nav-right">
+        <a href="index.html" class="active">Home</a>
+        <a href="about.html">About Us</a>
+        <a href="contact.html">Get in Touch</a>
+        <a href="login.html">Log In</a>
+        <div class="nav-dot"></div>
+      </div>
+    </nav>
+
+    <a href="detect.html" class="detect-btn">Detect Gene Mutation</a>
+  </div>
+</div>
+  <div class="container">
+    <h1>Genetic Mutation Data Form</h1>
+
+    <form id="geneticForm">
+      <div class="section-title">Basic Details</div>
+      <div class="grid">
+        <div class="field">
+          <label for="user_id">User ID</label>
+          <input type="text" id="user_id" value="user123" required />
+        </div>
+
+        <div class="field">
+          <label for="category">Category</label>
+          <input type="text" id="category" value="genetic" required />
+        </div>
+      </div>
+
+      <div class="section-title">Mutation Details</div>
+      <div class="grid">
+        <div class="field">
+          <label for="gene">Gene</label>
+          <input type="text" id="gene" value="HBB" required />
+        </div>
+
+        <div class="field">
+          <label for="mutation">Mutation</label>
+          <input type="text" id="mutation" value="E6V" required />
+        </div>
+
+        <div class="field full">
+          <label>Mutation Present</label>
+          <div class="checkbox-group">
+            <label class="checkbox-item">
+              <input type="radio" name="mutation_present" value="1" checked />
+              Yes
+            </label>
+            <label class="checkbox-item">
+              <input type="radio" name="mutation_present" value="0" />
+              No
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-title">Health Details</div>
+      <div class="grid">
+        <div class="field">
+          <label for="age">Age</label>
+          <input type="number" id="age" value="12" required />
+        </div>
+
+        <div class="field">
+          <label for="hemoglobin_level">Hemoglobin Level</label>
+          <input type="number" step="0.1" id="hemoglobin_level" value="9.5" required />
+        </div>
+
+        <div class="field">
+          <label for="rbc_count">RBC Count</label>
+          <input type="number" step="0.1" id="rbc_count" value="3.2" required />
+        </div>
+      </div>
+
+      <div class="section-title">Symptoms</div>
+      <div class="grid">
+        <div class="field full">
+          <div class="checkbox-group">
+            <label class="checkbox-item">
+              <input type="checkbox" id="fatigue" checked />
+              Fatigue
+            </label>
+
+            <label class="checkbox-item">
+              <input type="checkbox" id="pain" checked />
+              Pain
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <button type="submit">Submit Data</button>
+    </form>
+
+    <div id="result" class="result"></div>
+  </div>
+
+  <!-- <script>
+const form = document.getElementById("geneticForm");
+
+const API_URL = "http://localhost:8000/api/genetic-data";
+
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  // Build JSON EXACTLY like your required format
+  const jsonData = {
+
+    gene: document.getElementById("gene").value.trim(),
+    mutation: document.getElementById("mutation").value.trim(),
+    mutation_present: parseInt(
+      document.querySelector('input[name="mutation_present"]:checked').value
+    ),
+
+    age: parseInt(document.getElementById("age").value),
+    hemoglobin_level: parseFloat(
+      document.getElementById("hemoglobin_level").value
+    ),
+    rbc_count: parseFloat(document.getElementById("rbc_count").value),
+
+    symptoms: {
+      fatigue: document.getElementById("fatigue").checked ? 1 : 0,
+      pain: document.getElementById("pain").checked ? 1 : 0,
+    },
+  };
+
+  console.log("Sending JSON:", jsonData); // Debug
+
+  try {
+    const response = await fetch(API_URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(jsonData),
+    });
+
+    const result = await response.json();
+    storedId = result._id;
+
+    console.log("Response:", result);
+    alert("Data sent successfully ✅");
+  } catch (error) {
+    console.error("Error:", error);
+    alert("Failed to send data ❌");
+  }
+});
+</script> -->
+
+<script>
+const SAVE_API_URL = "http://localhost:8000/api/genetic-data";
+const RESULT_API_BASE = "http://localhost:8000/api/v1/genetic-data/get-result/";
+
+let storedId = null;
+
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const jsonData = {
+    user_id: document.getElementById("user_id").value.trim(),
+    category: document.getElementById("category").value.trim(),
+
+    gene: document.getElementById("gene").value.trim(),
+    mutation: document.getElementById("mutation").value.trim(),
+    mutation_present: parseInt(
+      document.querySelector('input[name="mutation_present"]:checked').value
+    ),
+
+    age: parseInt(document.getElementById("age").value),
+    hemoglobin_level: parseFloat(document.getElementById("hemoglobin_level").value),
+    rbc_count: parseFloat(document.getElementById("rbc_count").value),
+
+    symptoms: {
+      fatigue: document.getElementById("fatigue").checked ? 1 : 0,
+      pain: document.getElementById("pain").checked ? 1 : 0,
+    }
+  };
+
+  try {
+    // 1. Send form data
+    const saveResponse = await fetch(SAVE_API_URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(jsonData)
+    });
+
+    const saveResult = await saveResponse.json();
+    console.log("Save API response:", saveResult);
+
+    // 2. Store _id
+    storedId = saveResult._id || saveResult.data?._id;
+
+    if (!storedId) {
+      throw new Error("No _id returned from save API");
+    }
+
+    console.log("Stored ID:", storedId);
+
+    // 3. Hit result API with stored id
+    const resultResponse = await fetch(`${RESULT_API_BASE}${storedId}`);
+    const resultData = await resultResponse.json();
+
+    console.log("Prediction API response:", resultData);
+
+    // 4. Store prediction in a variable
+    const prediction = resultData.prediction;
+
+    console.log("Prediction:", prediction);
+
+    alert(`Prediction result: ${prediction}`);
+
+  } catch (error) {
+    console.error("Error:", error);
+    alert("Something went wrong");
+  }
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact Us</title>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+/* Background */
+body {
+ background:
+  radial-gradient(circle at top left, rgba(219, 234, 254, 0.42), transparent 28%),
+  radial-gradient(circle at bottom right, rgba(255, 243, 214, 0.45), transparent 24%),
+  linear-gradient(180deg, #eff4f9 0%, #f8fafc 45%, #eef3f8 100%);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+/* 🔥 NAVBAR */
+.nav-wrap {
+  position: fixed;
+  top: 22px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  width: 100%;
+  padding: 0 20px;
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.nav-shell {
+  width: min(1020px, 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  pointer-events: auto;
+}
+
+.brand-mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 46px;
+  padding: 0 18px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.76);
+  border: 1px solid rgba(17, 24, 39, 0.08);
+  color: #111827;
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: 0.4px;
+  white-space: nowrap;
+  text-decoration: none;
+  backdrop-filter: blur(14px) saturate(140%);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  box-shadow:
+    0 10px 24px rgba(15, 23, 42, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.95);
+}
+
+.dynamic-island {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 0 24px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(18px) saturate(140%);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+  box-shadow:
+    0 14px 34px rgba(15, 23, 42, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.96);
+}
+
+.nav-right {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.nav-right a {
+  position: relative;
+  text-decoration: none;
+  color: #4b5563;
+  font-size: 14px;
+  font-weight: 600;
+  white-space: nowrap;
+  padding: 4px 0;
+  transition: color 0.3s ease;
+}
+
+.nav-right a:hover,
+.nav-right a.active {
+  color: #111827;
+}
+
+.nav-dot {
+  position: absolute;
+  bottom: -7px;
+  left: 0;
+  width: 6px;
+  height: 6px;
+  background: #111827;
+  border-radius: 50%;
+  transition: left 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+  pointer-events: none;
+}
+
+.detect-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 46px;
+  padding: 0 20px;
+  border-radius: 999px;
+  text-decoration: none;
+  white-space: nowrap;
+  font-size: 14px;
+  font-weight: 700;
+  color: #111827;
+  background: rgba(255, 255, 255, 0.75);
+  border: 1px solid rgba(17, 24, 39, 0.08);
+  backdrop-filter: blur(16px) saturate(140%);
+  -webkit-backdrop-filter: blur(16px) saturate(140%);
+  box-shadow:
+    0 10px 26px rgba(15, 23, 42, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.95);
+  transition: all 0.28s ease;
+}
+
+.detect-btn:hover {
+  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow:
+    0 14px 32px rgba(15, 23, 42, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 1);
+}
+
+.detect-btn:active {
+  transform: translateY(0);
+  box-shadow:
+    0 6px 14px rgba(15, 23, 42, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+@media (max-width: 1100px) {
+  .nav-shell {
+    width: min(930px, 100%);
+    gap: 10px;
+  }
+
+  .dynamic-island {
+    padding: 0 18px;
+  }
+
+  .nav-right {
+    gap: 18px;
+  }
+
+  .brand-mark,
+  .detect-btn {
+    padding: 0 14px;
+  }
+}
+
+@media (max-width: 900px) {
+  .nav-wrap {
+    top: 16px;
+    padding: 0 12px;
+  }
+
+  .nav-shell {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .brand-mark {
+    order: 1;
+  }
+
+  .dynamic-island {
+    order: 2;
+    width: auto;
+    max-width: 100%;
+    min-height: 46px;
+    padding: 10px 16px;
+  }
+
+  .detect-btn {
+    order: 3;
+  }
+
+  .nav-right {
+    justify-content: center;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+
+  .nav-right a {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 640px) {
+  .brand-mark,
+  .detect-btn {
+    height: 40px;
+    font-size: 12px;
+    padding: 0 12px;
+  }
+
+  .dynamic-island {
+    min-height: 42px;
+    padding: 10px 14px;
+  }
+
+  .nav-right {
+    gap: 12px;
+  }
+
+  .nav-right a {
+    font-size: 12px;
+  }
+
+  .nav-dot {
+    bottom: -6px;
+    width: 5px;
+    height: 5px;
+  }
+}
+
+/* MAIN CONTAINER */
+.container {
+  margin-top: 120px; /* 👈 FIX overlap */
+  width: 100%;
+  max-width: 900px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  padding: 30px;
+  background: #ffffff;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+}
+
+/* Left Info */
+.info {
+  padding-right: 20px;
+}
+
+.info h2 {
+  margin-bottom: 10px;
+}
+
+.info p {
+  font-size: 14px;
+  color: #6b7280;
+  margin-bottom: 20px;
+}
+
+.contact-item {
+  margin-bottom: 15px;
+  font-size: 14px;
+}
+
+.contact-item strong {
+  display: block;
+  margin-bottom: 4px;
+}
+
+/* Form */
+.form h2 {
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  font-size: 14px;
+  color: #6b7280;
+  margin-bottom: 20px;
+}
+
+.input-group {
+  margin-bottom: 15px;
+}
+
+.input-group label {
+  display: block;
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+.input-group input,
+.input-group textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  outline: none;
+  font-size: 14px;
+}
+
+.input-group textarea {
+  resize: none;
+  height: 120px;
+}
+
+.input-group input:focus,
+.input-group textarea:focus {
+  border-color: #2563eb;
+}
+
+/* MATCHED BUTTON */
+button {
+  width: 100%;
+  padding: 14px;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(18px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #ffffff;
+  border-radius: 999px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  background: rgba(0, 0, 0, 0.6);
+  transform: translateY(-2px);
+}
+
+.message {
+  display: none;
+  margin-top: 12px;
+  padding: 10px;
+  background: #ecfdf5;
+  border: 1px solid #10b981;
+  color: #065f46;
+  border-radius: 8px;
+  font-size: 14px;
+  text-align: center;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .container {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="nav-wrap">
+  <div class="nav-shell">
+    <a href="index.html" class="brand-mark">creAIte</a>
+
+    <nav class="dynamic-island">
+      <div class="nav-right">
+        <a href="index.html">Home</a>
+        <a href="index.html">About Us</a>
+        <a href="contact.html" class="active">Get in Touch</a>
+        <a href="login.html">Log In</a>
+        <div class="nav-dot"></div>
+      </div>
+    </nav>
+
+    <a href="detect.html" class="detect-btn">Detect Gene Mutation</a>
+  </div>
+</div>
+
+<div class="container">
+  
+  <div class="info">
+    <h2>Contact Us</h2>
+    <p>Have questions or need help? Feel free to enquire</p>
+
+    <div class="contact-item">
+      <strong>Email</strong>
+      chikodit@example.com
+    </div>
+
+    <div class="contact-item">
+      <strong>Phone</strong>
+      +91 12345 6789
+    </div>
+
+    <div class="contact-item">
+      <strong>Address</strong>
+      Sjbit is best
+    </div>
+  </div>
+
+  <div class="form">
+    <h2>Send Message</h2>
+    <p class="subtitle">We’ll get back to you soon</p>
+
+    <form id="contactForm">
+      <div class="input-group">
+        <label>Name</label>
+        <input type="text" required placeholder="Your name">
+      </div>
+
+      <div class="input-group">
+        <label>Email</label>
+        <input type="email" required placeholder="Your email">
+      </div>
+
+      <div class="input-group">
+        <label>Message</label>
+        <textarea required placeholder="Write your message"></textarea>
+      </div>
+
+      <button type="submit">Send Message</button>
+      <div class="message" id="successMsg">Message sent successfully</div>
+    </form>
+  </div>
+
+</div>
+
+<script>
+const navLinks = document.querySelectorAll(".nav-right a");
+const dot = document.querySelector(".nav-dot");
+const navRight = document.querySelector(".nav-right");
+
+function moveDot(el) {
+  if (!el || !dot || !navRight) return;
+  const rect = el.getBoundingClientRect();
+  const parentRect = navRight.getBoundingClientRect();
+  dot.style.left =
+    rect.left - parentRect.left + rect.width / 2 - dot.offsetWidth / 2 + "px";
+}
+
+navLinks.forEach(link => {
+  link.addEventListener("mouseenter", () => {
+    moveDot(link);
+  });
+});
+
+navRight.addEventListener("mouseleave", () => {
+  const active = document.querySelector(".nav-right a.active");
+  if (active) moveDot(active);
+});
+
+window.addEventListener("load", () => {
+  const active = document.querySelector(".nav-right a.active");
+  if (active) moveDot(active);
+});
+
+window.addEventListener("resize", () => {
+  const active = document.querySelector(".nav-right a.active");
+  if (active) moveDot(active);
+});
+</script>
+</body>
+</html>

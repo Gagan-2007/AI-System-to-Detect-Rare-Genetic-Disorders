@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Terms & Conditions | creAIte</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Arial, sans-serif;
+    }
+
+    html,
+    body {
+      width: 100%;
+      min-height: 100%;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at top left, rgba(219, 234, 254, 0.42), transparent 28%),
+        radial-gradient(circle at bottom right, rgba(255, 243, 214, 0.45), transparent 24%),
+        linear-gradient(180deg, #eff4f9 0%, #f8fafc 45%, #eef3f8 100%);
+      color: #111827;
+      padding: 0 16px 40px;
+    }
+
+    .nav-wrap {
+      position: fixed;
+      top: 22px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1000;
+      width: 100%;
+      padding: 0 20px;
+      display: flex;
+      justify-content: center;
+      pointer-events: none;
+    }
+
+    .nav-shell {
+      width: min(1020px, 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      pointer-events: auto;
+    }
+
+    .brand-mark {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      height: 46px;
+      padding: 0 18px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.76);
+      border: 1px solid rgba(17, 24, 39, 0.08);
+      color: #111827;
+      font-size: 16px;
+      font-weight: 800;
+      letter-spacing: 0.4px;
+      white-space: nowrap;
+      text-decoration: none;
+      backdrop-filter: blur(14px) saturate(140%);
+      -webkit-backdrop-filter: blur(14px) saturate(140%);
+      box-shadow:
+        0 10px 24px rgba(15, 23, 42, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 0.95);
+    }
+
+    .dynamic-island {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 0 24px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.82);
+      backdrop-filter: blur(18px) saturate(140%);
+      -webkit-backdrop-filter: blur(18px) saturate(140%);
+      box-shadow:
+        0 14px 34px rgba(15, 23, 42, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 0.96);
+    }
+
+    .nav-right {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .nav-right a {
+      position: relative;
+      text-decoration: none;
+      color: #4b5563;
+      font-size: 14px;
+      font-weight: 600;
+      white-space: nowrap;
+      padding: 4px 0;
+      transition: color 0.3s ease;
+    }
+
+    .nav-right a:hover,
+    .nav-right a.active {
+      color: #111827;
+    }
+
+    .nav-dot {
+      position: absolute;
+      bottom: -7px;
+      left: 0;
+      width: 6px;
+      height: 6px;
+      background: #111827;
+      border-radius: 50%;
+      transition: left 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+      pointer-events: none;
+    }
+
+    .detect-btn {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      height: 46px;
+      padding: 0 20px;
+      border-radius: 999px;
+      text-decoration: none;
+      white-space: nowrap;
+      font-size: 14px;
+      font-weight: 700;
+      color: #111827;
+      background: rgba(255, 255, 255, 0.75);
+      border: 1px solid rgba(17, 24, 39, 0.08);
+      backdrop-filter: blur(16px) saturate(140%);
+      -webkit-backdrop-filter: blur(16px) saturate(140%);
+      box-shadow:
+        0 10px 26px rgba(15, 23, 42, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 0.95);
+      transition: all 0.28s ease;
+    }
+
+    .detect-btn:hover {
+      transform: translateY(-2px);
+      background: rgba(255, 255, 255, 0.9);
+      box-shadow:
+        0 14px 32px rgba(15, 23, 42, 0.12),
+        inset 0 1px 0 rgba(255, 255, 255, 1);
+    }
+
+    .detect-btn:active {
+      transform: translateY(0);
+    }
+
+    .page-wrap {
+      width: 100%;
+      max-width: 980px;
+      margin: 120px auto 0;
+    }
+
+    .hero-card {
+      padding: 40px 34px;
+      border-radius: 30px;
+      background: rgba(255, 255, 255, 0.78);
+      border: 1px solid rgba(255, 255, 255, 0.86);
+      backdrop-filter: blur(18px) saturate(130%);
+      -webkit-backdrop-filter: blur(18px) saturate(130%);
+      box-shadow:
+        0 22px 60px rgba(15, 23, 42, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.95);
+      margin-bottom: 24px;
+    }
+
+    .page-tag {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 18px;
+      padding: 10px 16px;
+      border-radius: 999px;
+      background: rgba(219, 234, 254, 0.45);
+      color: #2563eb;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .hero-card h1 {
+      font-size: clamp(34px, 5vw, 54px);
+      line-height: 1.04;
+      letter-spacing: -1px;
+      margin-bottom: 14px;
+      color: #111827;
+    }
+
+    .hero-card p {
+      max-width: 760px;
+      color: #4b5563;
+      font-size: 15px;
+      line-height: 1.9;
+    }
+
+    .terms-grid {
+      display: grid;
+      gap: 20px;
+    }
+
+    .terms-card {
+      padding: 30px;
+      border-radius: 24px;
+      background: rgba(255, 255, 255, 0.74);
+      border: 1px solid rgba(255, 255, 255, 0.84);
+      backdrop-filter: blur(16px) saturate(130%);
+      -webkit-backdrop-filter: blur(16px) saturate(130%);
+      box-shadow:
+        0 20px 50px rgba(15, 23, 42, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 0.94);
+    }
+
+    .terms-card h2 {
+      font-size: 22px;
+      margin-bottom: 14px;
+      color: #111827;
+      letter-spacing: -0.3px;
+    }
+
+    .terms-card p,
+    .terms-card li {
+      color: #4b5563;
+      font-size: 15px;
+      line-height: 1.9;
+    }
+
+    .terms-card ul {
+      padding-left: 20px;
+    }
+
+    .terms-card li + li {
+      margin-top: 8px;
+    }
+
+    .last-updated {
+      margin-top: 22px;
+      color: #6b7280;
+      font-size: 13px;
+      text-align: center;
+    }
+
+    @media (max-width: 1100px) {
+      .nav-shell {
+        width: min(930px, 100%);
+        gap: 10px;
+      }
+
+      .dynamic-island {
+        padding: 0 18px;
+      }
+
+      .nav-right {
+        gap: 18px;
+      }
+
+      .brand-mark,
+      .detect-btn {
+        padding: 0 14px;
+      }
+    }
+
+    @media (max-width: 900px) {
+      .nav-wrap {
+        top: 16px;
+        padding: 0 12px;
+      }
+
+      .nav-shell {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+      }
+
+      .brand-mark {
+        order: 1;
+      }
+
+      .dynamic-island {
+        order: 2;
+        width: auto;
+        max-width: 100%;
+        min-height: 46px;
+        padding: 10px 16px;
+      }
+
+      .detect-btn {
+        order: 3;
+      }
+
+      .nav-right {
+        justify-content: center;
+        gap: 14px;
+        flex-wrap: wrap;
+      }
+
+      .nav-right a {
+        font-size: 13px;
+      }
+
+      .page-wrap {
+        margin-top: 140px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      body {
+        padding: 0 12px 26px;
+      }
+
+      .brand-mark,
+      .detect-btn {
+        height: 40px;
+        font-size: 12px;
+        padding: 0 12px;
+      }
+
+      .dynamic-island {
+        min-height: 42px;
+        padding: 10px 14px;
+      }
+
+      .nav-right {
+        gap: 12px;
+      }
+
+      .nav-right a {
+        font-size: 12px;
+      }
+
+      .nav-dot {
+        bottom: -6px;
+        width: 5px;
+        height: 5px;
+      }
+
+      .page-wrap {
+        margin-top: 134px;
+      }
+
+      .hero-card,
+      .terms-card {
+        padding: 24px 18px;
+        border-radius: 22px;
+      }
+
+      .hero-card p,
+      .terms-card p,
+      .terms-card li {
+        font-size: 14px;
+        line-height: 1.8;
+      }
+
+      .terms-card h2 {
+        font-size: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="nav-wrap">
+    <div class="nav-shell">
+      <a href="index.html" class="brand-mark">creAIte</a>
+
+      <nav class="dynamic-island">
+        <div class="nav-right">
+          <a href="index.html">Home</a>
+          <a href="about.html">About Us</a>
+          <a href="contact.html">Get in Touch</a>
+          <a href="login.html">Log In</a>
+          <div class="nav-dot"></div>
+        </div>
+      </nav>
+
+      <a href="detect.html" class="detect-btn">Detect Gene Mutation</a>
+    </div>
+  </div>
+
+  <main class="page-wrap">
+    <section class="hero-card">
+      <div class="page-tag">Legal</div>
+      <h1>Terms & Conditions</h1>
+      <p>
+        These Terms & Conditions govern the use of the creAIte website and related
+        services. By accessing or using this site, you agree to follow these terms,
+        our policies, and any applicable laws.
+      </p>
+      <div class="last-updated">Last updated: April 7, 2026</div>
+    </section>
+
+    <section class="terms-grid">
+      <article class="terms-card">
+        <h2>1. Acceptance of Terms</h2>
+        <p>
+          By using this website, you confirm that you accept these Terms &
+          Conditions. If you do not agree with any part of these terms, you should
+          discontinue use of the site.
+        </p>
+      </article>
+
+      <article class="terms-card">
+        <h2>2. Use of the Website</h2>
+        <p>
+          You agree to use the website only for lawful purposes and in a manner
+          that does not harm, disrupt, or interfere with the security, availability,
+          or functionality of the platform.
+        </p>
+      </article>
+
+      <article class="terms-card">
+        <h2>3. User Information</h2>
+        <p>
+          When creating an account or submitting information, you agree that the
+          details you provide are accurate, current, and complete. You are
+          responsible for maintaining the confidentiality of your account details.
+        </p>
+      </article>
+
+      <article class="terms-card">
+        <h2>4. Intellectual Property</h2>
+        <p>
+          All content, branding, design elements, text, graphics, and other
+          materials on this website are owned by or licensed to creAIte unless
+          stated otherwise. You may not copy, reproduce, or distribute them without
+          prior written permission.
+        </p>
+      </article>
+
+      <article class="terms-card">
+        <h2>5. Platform Purpose</h2>
+        <p>
+          creAIte focuses on creating intelligent solutions for real-world problems.
+          Any information, tools, or features provided through this platform are
+          intended for general use and demonstration unless specifically stated
+          otherwise.
+        </p>
+      </article>
+
+      <article class="terms-card">
+        <h2>6. Limitation of Liability</h2>
+        <p>
+          We make reasonable efforts to keep the website accurate and available,
+          but we do not guarantee uninterrupted access or error-free operation.
+          creAIte is not liable for any direct, indirect, or incidental damages
+          arising from use of the website.
+        </p>
+      </article>
+
+      <article class="terms-card">
+        <h2>7. Prohibited Activities</h2>
+        <ul>
+          <li>Using the platform for unlawful or harmful purposes</li>
+          <li>Attempting to access restricted systems or data</li>
+          <li>Copying or misusing website content without permission</li>
+          <li>Introducing malicious software or disruptive code</li>
+        </ul>
+      </article>
+
+      <article class="terms-card">
+        <h2>8. Changes to These Terms</h2>
+        <p>
+          We may update these Terms & Conditions from time to time. Continued use
+          of the website after updates means that you accept the revised terms.
+        </p>
+      </article>
+
+      <article class="terms-card">
+        <h2>9. Contact</h2>
+        <p>
+          For questions about these Terms & Conditions, you may contact us through
+          the website’s contact page or the official communication channels listed
+          on the platform.
+        </p>
+      </article>
+    </section>
+  </main>
+
+  <script>
+    const navLinks = document.querySelectorAll(".nav-right a");
+    const dot = document.querySelector(".nav-dot");
+    const navRight = document.querySelector(".nav-right");
+
+    function moveDot(el) {
+      if (!el || !dot || !navRight) return;
+      const rect = el.getBoundingClientRect();
+      const parentRect = navRight.getBoundingClientRect();
+      dot.style.left = rect.left - parentRect.left + rect.width / 2 - dot.offsetWidth / 2 + "px";
+    }
+
+    navLinks.forEach(link => {
+      link.addEventListener("mouseenter", () => {
+        moveDot(link);
+      });
+    });
+
+    navRight.addEventListener("mouseleave", () => {
+      const active = document.querySelector(".nav-right a.active");
+      if (active) moveDot(active);
+    });
+
+    window.addEventListener("load", () => {
+      const active = document.querySelector(".nav-right a.active") || navLinks[0];
+      moveDot(active);
+    });
+
+    window.addEventListener("resize", () => {
+      const active = document.querySelector(".nav-right a.active") || navLinks[0];
+      moveDot(active);
+    });
+  </script>
+</body>
+</html>
